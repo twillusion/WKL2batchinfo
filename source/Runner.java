@@ -40,6 +40,9 @@ public class Runner {
 		
 		for (File f : FList) {
 			ArrayList<Sample> ATest = M.WKLBreak(f);
+			for (Sample s : ATest) {
+				System.out.println(f.getName() + "\t" + s.getName());
+			}
 			masterlist.add(ATest);
 		}
 

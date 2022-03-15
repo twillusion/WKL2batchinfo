@@ -14,6 +14,8 @@ public class Methods {
 		
 		for (ArrayList<Sample> AL : A) {
 			for (Sample s : AL) {
+				
+				
 				if (!s.getID().equals("blank") && !s.getID().contains("#")) {
 					output.add(s);
 				}
@@ -28,8 +30,12 @@ public class Methods {
 		fw.write("file\tbatch\ttype\r\n");
 		for (Sample s : A) {
 			String T = "";
-			if (s.getID().contains("pool")) {
+			String sName = s.getID().toLowerCase();
+			if (sName.contains("pool") || sName.contains("control")) {
 				T="BQC";
+			}
+			else if (sName.contains("tech") | sName.contains("Tech")) {
+				T="PBLANK";
 			}
 			else {
 				T="Sample";
@@ -38,7 +44,7 @@ public class Methods {
 		}
 		fw.flush();
 		//System.out.println("Writing Done");
-		
+			
 	}
 	
 	public void Sorter(ArrayList<Sample> A) {
